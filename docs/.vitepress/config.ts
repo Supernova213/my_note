@@ -6,7 +6,7 @@ const SHOW_EXAMS = true
 export default defineConfig({
   base: '/my_note/',
   title: "我的笔记",
-  description: SHOW_EXAMS ? "个人简历、考公心得、工作记录与面试经验" : "个人简历、工作记录与面试经验",
+  description: SHOW_EXAMS ? "考公心得、工作记录与面试经验" : "工作记录与面试经验",
   head: [
     ['link', { rel: 'icon', href: 'https://img.icons8.com/doodle/96/rabbit.png' }]
   ],
@@ -36,7 +36,6 @@ export default defineConfig({
     logo: 'https://img.icons8.com/doodle/96/rabbit.png',
     nav: [
       { text: '首页', link: '/' },
-      { text: '个人简历', link: '/resume/' },
       // 导航栏动态显隐
       ...(SHOW_EXAMS ? [{ text: '考公模块', link: '/exams/' }] : []),
       { text: '工作中遇到的问题', link: '/work/' },

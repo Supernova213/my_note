@@ -4,15 +4,12 @@ layout: home
 hero:
   name: "强强的 Note"
   text: "探索、记录、沉淀"
-  tagline: "一个全方位的数字花园：简历、工作中台、考公之路与面试突围"
+  tagline: "一个全方位的数字花园：工作中台、考公之路与面试突围"
   image:
     src: https://img.icons8.com/doodle/512/rabbit.png
     alt: 涂鸦风兔子 Logo
   actions:
     - theme: brand
-      text: 📄 查看简历
-      link: /resume/
-    - theme: alt
       text: ⚙️ 工作问题
       link: /work/
     - theme: alt
@@ -29,9 +26,6 @@ features:
   - title: 🚀 面试高频难题
     details: 深度解析面试核心考点，涵盖前端、后端与架构设计。
     icon: 🚀
-  - title: 🔒 简历隐私保护
-    details: 简历模块集成轻量级客户端加密，确保您的隐私万无一失。
-    icon: 🛡️
   - title: 💡 心得感悟
     details: 技术之外的思考，关于生活、学习 with 成长的慢思考。
     icon: ☕
