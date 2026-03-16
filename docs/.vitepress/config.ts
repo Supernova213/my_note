@@ -22,7 +22,14 @@ export default defineConfig({
         )
       }
 
-      // 2. 清理 hero tagline 中的考公字样
+      // 2. 过滤掉首页 hero actions 中的考公按钮
+      if (pageData.frontmatter.hero?.actions) {
+        pageData.frontmatter.hero.actions = pageData.frontmatter.hero.actions.filter(
+          (a: any) => !a.text?.includes('考公')
+        )
+      }
+
+      // 3. 清理 hero tagline 中的考公字样
       if (pageData.frontmatter.hero?.tagline) {
         pageData.frontmatter.hero.tagline = pageData.frontmatter.hero.tagline
           .replace('、考公之路', '')

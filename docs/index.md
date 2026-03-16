@@ -13,6 +13,12 @@ hero:
       text: ⚙️ 工作问题
       link: /work/
     - theme: alt
+      text: 📖 考公模块
+      link: /exams/
+    - theme: alt
+      text: 💡 心得体会
+      link: /thoughts/
+    - theme: alt
       text: ⚔️ 面试突围
       link: /interviews/
 
