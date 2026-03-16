@@ -7,6 +7,9 @@ export default defineConfig({
   base: '/my_note/',
   title: "我的笔记",
   description: SHOW_EXAMS ? "个人简历、考公心得、工作记录与面试经验" : "个人简历、工作记录与面试经验",
+  head: [
+    ['link', { rel: 'icon', href: 'https://img.icons8.com/doodle/96/rabbit.png' }]
+  ],
   
   // 动态处理页面数据
   transformPageData(pageData) {
