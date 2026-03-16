@@ -1,49 +1,51 @@
 # Project Overview: 我的笔记 (Personal Notes)
 
-A personal documentation and note-taking system built with **VitePress**. It serves as a centralized hub for managing a professional resume, exam preparation materials, work-related troubleshooting, personal reflections, and interview preparation.
+一个基于 **VitePress** 构建的个人知识管理与笔记系统。作为技术积累、考公复习、工作复盘和面试准备的集中地。
 
-## Core Technologies
-- **Framework**: [VitePress](https://vitepress.dev/) (Static Site Generator)
-- **Runtime**: Node.js
-- **Frontend**: Vue 3 (for custom components within Markdown)
-- **Deployment**: GitHub Pages via GitHub Actions
+## 核心技术栈
+- **框架**: [VitePress](https://vitepress.dev/) (静态站点生成器)
+- **运行环境**: Node.js
+- **前端**: Vue 3 (用于 Markdown 中的自定义组件)
+- **部署**: 通过 GitHub Actions 自动化部署至 GitHub Pages
 
-## Directory Structure
-- `docs/`: Root directory for all Markdown content.
-  - `.vitepress/`: VitePress configuration (`config.ts`) and theme data.
-  - `resume/`: Personal resume module with client-side password protection.
-  - `exams/`: Exam preparation materials (toggleable visibility).
-  - `work/`: Documentation for technical issues encountered at work.
-  - `thoughts/`: Personal reflections and journals.
-  - `interviews/`: High-frequency interview questions and answers.
-- `.github/workflows/`: Automated deployment configuration for GitHub Pages.
+## 目录结构
+- `docs/`: Markdown 内容根目录。
+  - `.vitepress/`: VitePress 配置 (`config.ts`)、头部信息及主题定制。
+  - `exams/`: 考公复习材料（支持一键显隐）。
+  - `work/`: 工作中遇到的技术问题与解决方案记录。
+  - `thoughts/`: 个人心得、感悟与生活随笔。
+  - `interviews/`: 高频面试题库与深度解析。
+- `.github/workflows/`: GitHub Actions 自动化部署流程配置。
 
-## Building and Running
-The project uses standard NPM scripts defined in `package.json`:
+## 运行与构建
+项目使用 `package.json` 中定义的标准 NPM 脚本：
 
-| Command | Action |
+| 命令 | 描述 |
 |---------|--------|
-| `npm run docs:dev` | Start the local development server (with hot reload). |
-| `npm run docs:build` | Build the static site for production into `docs/.vitepress/dist`. |
-| `npm run docs:preview` | Preview the production build locally. |
+| `npm run docs:dev` | 启动本地开发服务器（支持热重载）。 |
+| `npm run docs:build` | 构建静态站点至 `docs/.vitepress/dist`。 |
+| `npm run docs:preview` | 在本地预览生产环境构建结果。 |
 
-## Key Features & Configurations
+## 关键功能与配置
 
-### 1. Resume Password Protection
-The file `docs/resume/index.md` uses a custom `<script setup>` block with Vue 3 to implement a basic password check.
-- **Mechanism**: Validates a hardcoded string and stores authentication state in `localStorage`.
-- **Default Password**: Set via `CORRECT_PASSWORD` variable in the file.
+### 1. 考公模块一键显隐 (Feature Toggling)
+可以通过修改 `docs/.vitepress/config.ts` 中的 `SHOW_EXAMS` 常量来控制考公相关内容的展示。
+- **生效范围**：
+  - 顶部导航栏 (Navbar) 与侧边栏 (Sidebar)。
+  - 首页 (Home) 的 Hero 区快捷按钮。
+  - 首页的 Features 特性卡片。
+  - 首页的副标题 (Tagline) 文字。
 
-### 2. Feature Toggling (Exams Module)
-The "Exams" module can be hidden from the navigation bar by modifying the `SHOW_EXAMS` constant in `docs/.vitepress/config.ts`.
+### 2. 自动化部署
+配置了 GitHub Action (`.github/workflows/deploy.yml`)，实现以下自动化流程：
+1. 监听 `main` 分支的推送请求。
+2. 执行 `npm run docs:build` 构建项目。
+3. 使用 `peaceiris/actions-gh-pages` 将构建产物部署至 `gh-pages` 分支。
 
-### 3. Automated Deployment
-A GitHub Action (`.github/workflows/deploy.yml`) is configured to:
-1. Trigger on every push to the `main` branch.
-2. Build the project using `npm run docs:build`.
-3. Deploy the resulting assets to the `gh-pages` branch using the `peaceiris/actions-gh-pages` action.
+### 3. GitHub Pages 路径适配
+在 `config.ts` 中配置了 `base: '/my_note/'`，确保所有静态资源（JS, CSS, 图片）在 GitHub 二级域名路径下能正常加载。
 
-## Development Conventions
-- **Content**: All content is authored in Markdown (.md).
-- **Navigation**: Sidebar and Navbar links must be manually updated in `docs/.vitepress/config.ts` when adding new sections.
-- **Customization**: Use Vue components directly in Markdown files for interactive features (like the resume password lock).
+## 开发约定
+- **内容编写**：所有内容均使用 Markdown (.md) 编写。
+- **资源引入**：支持使用 `<!-- @include: ./file.md -->` 语法进行文档嵌套。
+- **导航更新**：新增分类目录后，需手动在 `docs/.vitepress/config.ts` 中更新 `nav` 和 `sidebar` 配置。
