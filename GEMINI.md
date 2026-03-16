@@ -45,7 +45,15 @@
 ### 3. GitHub Pages 路径适配
 在 `config.ts` 中配置了 `base: '/my_note/'`，确保所有静态资源（JS, CSS, 图片）在 GitHub 二级域名路径下能正常加载。
 
+### 4. 文章列表与侧边栏自动生成 (Auto Generation)
+通过在 `config.ts` 中集成的工具函数，系统能够自动扫描目录：
+- **侧边栏 (Sidebar)**：自动提取 Markdown 文件的一级标题（H1），按修改日期倒序排列。
+- **文章列表 (Article List)**：在各分类的 `index.md` 页面中，自动注入带日期的文章列表。
+- **日期显示**：列表项会自动标注文件最后修改日期（YYYY-MM-DD）。
+
 ## 开发约定
-- **内容编写**：所有内容均使用 Markdown (.md) 编写。
+- **内容编写**：所有内容均使用 Markdown (.md) 编写。建议在文件开头使用 `# 标题` 定义文章名。
 - **资源引入**：支持使用 `<!-- @include: ./file.md -->` 语法进行文档嵌套。
-- **导航更新**：新增分类目录后，需手动在 `docs/.vitepress/config.ts` 中更新 `nav` 和 `sidebar` 配置。
+- **导航更新**：
+  - **现有分类**：直接在 `work/`, `exams/`, `thoughts/`, `interviews/` 目录下新增文件即可自动同步至侧边栏和列表，无需修改配置。
+  - **新增分类**：如需新增顶级分类目录，需在 `docs/.vitepress/config.ts` 的 `nav` 和 `sidebar` 中进行一次性挂载。
