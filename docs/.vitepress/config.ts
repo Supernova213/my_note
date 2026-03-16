@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 const SHOW_EXAMS = true
 
 export default defineConfig({
+  base: '/my_note/',
   title: "我的笔记",
   description: SHOW_EXAMS ? "个人简历、考公心得、工作记录与面试经验" : "个人简历、工作记录与面试经验",
   
