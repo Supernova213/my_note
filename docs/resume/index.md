@@ -2,63 +2,25 @@
 layout: doc
 ---
 
-<script setup>
-import { ref, onMounted } from 'vue'
+<div style="text-align: center; margin-top: 60px;">
+  <h1 style="font-size: 2.5em; margin-bottom: 0.5em;">📄 个人简历</h1>
+  <p style="color: var(--vp-c-text-2); margin: 20px 0; font-size: 1.1em;">
+    为了保证简历内容的实时更新与隐私安全，我的完整简历已迁移至 <b>语雀 (Yuque)</b> 进行加密托管。
+  </p>
+  
+  <a href="https://www.yuque.com/" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #00B96B; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 20px; transition: opacity 0.2s;">
+    👉 前往语雀查看最新简历
+  </a>
 
-const isAuth = ref(false)
-const password = ref('')
-const error = ref('')
-const CORRECT_PASSWORD = 'yourpassword' // 您可以根据需要修改此处的密码
-
-onMounted(() => {
-  if (localStorage.getItem('resume_auth') === 'true') {
-    isAuth.value = true
-  }
-})
-
-function checkPassword() {
-  if (password.value === CORRECT_PASSWORD) {
-    isAuth.value = true
-    localStorage.setItem('resume_auth', 'true')
-    error.value = ''
-  } else {
-    error.value = '密码错误，请重试'
-  }
-}
-
-function clearAuth() {
-  localStorage.removeItem('resume_auth')
-  isAuth.value = false
-}
-</script>
-
-<div v-if="!isAuth" style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; max-width: 400px; margin: 40px auto; text-align: center;">
-  <h3>🔒 简历受保护</h3>
-  <p>请输入访问密码查看个人简历</p>
-  <input v-model="password" type="password" @keyup.enter="checkPassword" style="padding: 8px; width: 100%; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;"/>
-  <button @click="checkPassword" style="padding: 8px 16px; background: #3eaf7c; color: white; border: none; border-radius: 4px; cursor: pointer;">确定</button>
-  <p v-if="error" style="color: red; margin-top: 10px;">{{ error }}</p>
+  <div style="margin-top: 50px; font-size: 14px; color: var(--vp-c-text-2); padding: 20px; background: var(--vp-c-bg-soft); border-radius: 8px; max-width: 500px; margin-left: auto; margin-right: auto; text-align: left;">
+    <p style="margin: 0 0 10px 0;">💡 <b>温馨提示：</b></p>
+    <p style="margin: 0;">访问简历可能需要密码。如果您是招聘方，请通过邮件或微信向我获取访问权限。简历支持导出为 PDF 格式。</p>
+  </div>
 </div>
 
-<div v-else>
-  <button @click="clearAuth" style="float: right; font-size: 12px; color: #666;">退出访问</button>
-
-  # 个人简历
-
-  ## 基本信息
-  - 姓名：[您的姓名]
-  - 职位：[您的意向职位]
-  - 经验：[XX 年]
-
-  ## 核心技能
-  - 编程语言：JavaScript, TypeScript, Vue, Node.js
-  - 框架/库：VitePress, TailwindCSS...
-
-  ## 工作经历
-  - 20XX - 至今：[公司 A] - [职位]
-  - 20XX - 20XX：[公司 B] - [职位]
-
-  ## 教育背景
-  - [大学名称] - [专业]
-
-</div>
+<style>
+/* 覆盖默认的外部链接图标，让按钮更纯粹 */
+.vp-doc a[target="_blank"]::after {
+  display: none;
+}
+</style>

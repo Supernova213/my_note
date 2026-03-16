@@ -1,0 +1,59 @@
+:root {
+  --vp-c-brand: #646cff;
+  --vp-c-brand-light: #747bff;
+  --vp-c-brand-lighter: #9499ff;
+  --vp-c-brand-dark: #4d53e0;
+  --vp-c-brand-darker: #393fb2;
+
+  /* 自定义渐变色 */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #646cff 10%, #ff46b4 100%);
+  
+  --vp-home-hero-image-background-image: linear-gradient( -45deg, #80f1ff 50%, #ff09a1 50% );
+  --vp-home-hero-image-filter: blur(150px);
+}
+
+/* 首页卡片悬浮效果 */
+.VPFeature {
+  border-radius: 12px !important;
+  background-color: var(--vp-c-bg-soft) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  border: 1px solid transparent !important;
+}
+
+.VPFeature:hover {
+  transform: translateY(-8px);
+  border-color: var(--vp-c-brand) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 标题渐变 */
+.VPHero .name {
+  background: var(--vp-home-hero-name-background);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* 响应式调整 */
+@media (max-width: 640px) {
+  .VPHero .name {
+    font-size: 48px !important;
+  }
+}
+
+/* 简历密码框美化 */
+.auth-input {
+  padding: 12px;
+  width: 100%;
+  margin-bottom: 15px;
+  border: 2px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  transition: border-color 0.2s;
+}
+
+.auth-input:focus {
+  border-color: var(--vp-c-brand);
+  outline: none;
+}

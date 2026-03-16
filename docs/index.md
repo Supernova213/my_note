@@ -2,22 +2,48 @@
 layout: home
 
 hero:
-  name: 我的笔记
-  text: 个人简历 | 考公心得 | 工作记录 | 面试经验
-  tagline: 持续学习，持续进步
+  name: "强强的 Note"
+  text: "探索、记录、沉淀"
+  tagline: "一个全方位的数字花园：简历、工作中台、考公之路与面试突围"
+  image:
+    src: https://img.icons8.com/doodle/512/rabbit.png
+    alt: 涂鸦风兔子 Logo
   actions:
     - theme: brand
-      text: 查看简历
+      text: 📄 查看简历
       link: /resume/
     - theme: alt
-      text: 快速开始
+      text: ⚙️ 工作问题
       link: /work/
+    - theme: alt
+      text: ⚔️ 面试突围
+      link: /interviews/
 
 features:
-  - title: 工作记录
-    details: 记录开发中遇到的每一个难题及解决方案。
-  - title: 面试难题
-    details: 收集面试真题，打造个人知识库。
-  - title: 考公心得
-    details: 系统整理考公资料，随时切换可见状态。
+  - title: 🛠️ 工作问题记录
+    details: 精准记录开发过程中的疑难杂症，打造个人私有知识中台。
+    icon: 🛠️
+  - title: 📖 考公复习专栏
+    details: 体系化整理行测、申论资料。支持一键配置显示/隐藏。
+    icon: 📖
+  - title: 🚀 面试高频难题
+    details: 深度解析面试核心考点，涵盖前端、后端与架构设计。
+    icon: 🚀
+  - title: 🔒 简历隐私保护
+    details: 简历模块集成轻量级客户端加密，确保您的隐私万无一失。
+    icon: 🛡️
+  - title: 💡 心得感悟
+    details: 技术之外的思考，关于生活、学习 with 成长的慢思考。
+    icon: ☕
+  - title: ☁️ GitHub 自动部署
+    details: 每次提交代码自动触发 CI/CD，无缝发布至 GitHub Pages。
+    icon: ☁️
 ---
+
+<style>
+/* 首页英雄区渐变效果 */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #646cff 10%, #ff46b4 100%);
+}
+</style>
