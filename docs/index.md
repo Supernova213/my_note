@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "强强的 Note"
   text: "探索、记录、沉淀"
-  tagline: "一个全方位的数字花园：工作中台、考公之路与面试突围"
+  tagline: "我要输出一些内容，帮助我思考与记忆！"
   image:
     src: https://img.icons8.com/doodle/512/rabbit.png
     alt: 涂鸦风兔子 Logo
