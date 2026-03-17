@@ -34,7 +34,7 @@ function getSidebarItems(dir: string, text: string) {
     {
       text,
       items: [
-        { text: '首页', link: `/${dir}/` },
+        { text: '目录', link: `/${dir}/` },
         ...files.map(({ text, link, date }) => ({ text, link, date }))
       ]
     }
