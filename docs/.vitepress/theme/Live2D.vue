@@ -21,26 +21,37 @@ onMounted(async () => {
     models: [
       {
         path: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-hibiki@1.0.5/assets/hibiki.model.json',
-        scale: props.isHero ? 0.3 : 0.12,
-        position: props.isHero ? [40, 0] : [-10, 20],
+        scale: props.isHero ? 0.18 : 0.1, // 稍微放大一点点
+        position: props.isHero ? [100, 0] : [-10, 20],
         stageStyle: {
-          width: props.isHero ? 500 : 300,
-          height: props.isHero ? 550 : 350
+          width: props.isHero ? 400 : 250, // 同步略微增大容器
+          height: props.isHero ? 450 : 350
         }
       }
     ],
-    // 1. 禁用状态栏（彻底移除那个蓝色的加载成功/加载中提示）
+    transition: 'fade', 
     statusBar: {
       disable: true
     },
-    // 2. 禁用右侧菜单
     menus: {
       disable: true 
     },
-    // 3. 禁用加载成功后的欢迎语
     tips: {
-      welcome: '',
-      copy: '复制成功啦~'
+      style: {
+        width: 220,
+        height: 'auto',
+        minHeight: 60,
+        left: props.isHero ? '70%' : '50%', 
+        top: props.isHero ? '15%' : '-15%',
+        transform: 'translateX(-50%)',
+        fontSize: '13px' // 字号也随之微调
+      },
+      idleTips: {
+        word: '快来和我一起学习吧!',
+        interval: 15000
+      },
+      copy: '复制成功啦~',
+      welcome: ''
     },
     parentElement: props.isHero ? containerRef.value : document.body,
     fixed: !props.isHero, 
@@ -59,33 +70,36 @@ onMounted(async () => {
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  height: 550px;
-  padding-right: 5%;
+  height: 450px; /* 容器高度同步回升 */
+  padding-right: 20%;
 }
 
 @media (max-width: 960px) {
   .hero-kanban-container {
     justify-content: center;
     padding-right: 0;
-    height: 400px;
+    height: 350px;
   }
 }
 </style>
 
 <style>
-/* 终极 CSS 补丁，确保任何状态栏和菜单都不显示 */
-.hero-kanban-container #oml2d, 
+.hero-kanban-container #oml2d {
+  position: relative !important;
+}
+
+#oml2d .oml2d-menus, 
 #oml2d-statusBar,
 .oml2d-statusBar {
   display: none !important;
 }
 
-/* 仅保留模型容器可见 */
 #oml2d, #oml2d-stage {
   display: block !important;
 }
 
-.hero-kanban-container #oml2d {
-  position: relative !important;
+.oml2d-tips {
+  white-space: normal !important;
+  word-wrap: break-word !important;
 }
 </style>
