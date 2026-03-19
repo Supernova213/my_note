@@ -1,30 +1,58 @@
 :root {
-  --vp-c-brand: #646cff;
-  --vp-c-brand-light: #747bff;
-  --vp-c-brand-lighter: #9499ff;
-  --vp-c-brand-dark: #4d53e0;
-  --vp-c-brand-darker: #393fb2;
+  /* 樱花粉二次元色调 */
+  --vp-c-brand: #ff99aa;
+  --vp-c-brand-light: #ffb6c1;
+  --vp-c-brand-lighter: #ffd1dc;
+  --vp-c-brand-dark: #ff7788;
+  --vp-c-brand-darker: #ff5566;
 
   /* 自定义渐变色 */
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(135deg, #646cff 10%, #ff46b4 100%);
+  --vp-home-hero-name-background: linear-gradient(135deg, #ff99aa 10%, #ff46b4 100%);
   
-  --vp-home-hero-image-background-image: linear-gradient( -45deg, #80f1ff 50%, #ff09a1 50% );
+  --vp-home-hero-image-background-image: linear-gradient( -45deg, #ffb6c1 50%, #ff09a1 50% );
   --vp-home-hero-image-filter: blur(150px);
 }
 
-/* 首页卡片悬浮效果 */
+/* 全局背景图：四月是你的谎言 */
+body {
+  background-image: url('/background.png');
+  background-attachment: fixed; /* 背景固定，随内容滚动 */
+  background-position: center bottom; /* 针对这张图的构图，靠下对齐更美观 */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 让主布局容器半透明，透出背景图 */
+#app {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px); /* 轻微模糊增强可读性 */
+  min-height: 100vh;
+}
+
+/* 暗黑模式适配 */
+.dark #app {
+  background-color: rgba(30, 30, 30, 0.6);
+}
+
+/* 首页卡片：二次元毛玻璃效果 */
 .VPFeature {
-  border-radius: 12px !important;
-  background-color: var(--vp-c-bg-soft) !important;
+  border-radius: 16px !important;
+  background-color: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  border: 1px solid transparent !important;
+  border: 1px solid rgba(255, 153, 170, 0.2) !important;
+}
+
+.dark .VPFeature {
+  background-color: rgba(30, 30, 30, 0.4) !important;
 }
 
 .VPFeature:hover {
   transform: translateY(-8px);
   border-color: var(--vp-c-brand) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(255, 153, 170, 0.2);
 }
 
 /* 标题渐变 */
