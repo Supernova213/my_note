@@ -7,10 +7,13 @@
 - **运行环境**: Node.js
 - **前端**: Vue 3 (用于 Markdown 中的自定义组件)
 - **部署**: 通过 GitHub Actions 自动化部署至 GitHub Pages
+- **特效**: Canvas (Sakura) & Live2D (oh-my-live2d)
 
 ## 目录结构
 - `docs/`: Markdown 内容根目录。
   - `.vitepress/`: VitePress 配置 (`config.ts`)、头部信息及主题定制。
+    - `theme/`: 包含 `Sakura.vue` (樱花特效) 与 `Live2D.vue` (看板郎组件)。
+  - `public/`: 静态资源存放，如全局背景图 `background.png`。
   - `exams/`: 考公复习材料（支持一键显隐）。
   - `work/`: 工作中遇到的技术问题与解决方案记录。
   - `thoughts/`: 个人心得、感悟与生活随笔。
@@ -30,30 +33,27 @@
 
 ### 1. 考公模块一键显隐 (Feature Toggling)
 可以通过修改 `docs/.vitepress/config.ts` 中的 `SHOW_EXAMS` 常量来控制考公相关内容的展示。
-- **生效范围**：
-  - 顶部导航栏 (Navbar) 与侧边栏 (Sidebar)。
-  - 首页 (Home) 的 Hero 区快捷按钮。
-  - 首页的 Features 特性卡片。
-  - 首页的副标题 (Tagline) 文字。
 
-### 2. 自动化部署
-配置了 GitHub Action (`.github/workflows/deploy.yml`)，实现以下自动化流程：
-1. 监听 `main` 分支的推送请求。
-2. 执行 `npm run docs:build` 构建项目。
-3. 使用 `peaceiris/actions-gh-pages` 将构建产物部署至 `gh-pages` 分支。
+### 2. 二次元视觉定制 (Anime Aesthetic)
+项目进行了深度视觉美化，具有浓郁的二次元氛围：
+- **全局背景**: 使用《四月是你的谎言》高清壁纸作为固定背景。
+- **毛玻璃效果**: 全站容器应用了 `backdrop-filter: blur()`，使内容卡片呈现半透明磨砂质感，透出背景。
+- **樱花飘落**: 集成了高性能 Canvas 樱花瓣下落特效 (`Sakura.vue`)，默认粒子数为 15 以保持清新。
+- **品牌配色**: 主题色统一采用 **樱花粉 (#ff99aa)**。
 
-### 3. GitHub Pages 路径适配
-在 `config.ts` 中配置了 `base: '/my_note/'`，确保所有静态资源（JS, CSS, 图片）在 GitHub 二级域名路径下能正常加载。
+### 3. Live2D 智能看板郎
+集成了 `oh-my-live2d` 插件，并根据场景动态调整：
+- **首页嵌入**: 自动识别首页 Hero 区域，将看板郎 (Hibiki) 完美嵌入原本 Icon 的位置，并放大展示。
+- **全站浮动**: 在进入文章页面后，看板郎自动移动至右下角进行伴读。
+- **纯净模式**: 禁用了所有自带菜单、状态栏和冗余加载提示，提供沉浸式体验。
 
-### 4. 文章列表与侧边栏自动生成 (Auto Generation)
-通过在 `config.ts` 中集成的工具函数，系统能够自动扫描目录：
-- **侧边栏 (Sidebar)**：自动提取 Markdown 文件的一级标题（H1），按修改日期倒序排列。
-- **文章列表 (Article List)**：在各分类的 `index.md` 页面中，自动注入带日期的文章列表。
-- **日期显示**：列表项会自动标注文件最后修改日期（YYYY-MM-DD）。
+### 4. 自动化部署
+配置了 GitHub Action (`.github/workflows/deploy.yml`)，实现提交代码后自动构建并部署至 `gh-pages` 分支。
+
+### 5. 侧边栏与列表自动生成
+通过工具函数自动扫描目录并提取 Markdown 标题，按修改日期倒序生成列表，无需手动维护导航。
 
 ## 开发约定
-- **内容编写**：所有内容均使用 Markdown (.md) 编写。建议在文件开头使用 `# 标题` 定义文章名。
-- **资源引入**：支持使用 `<!-- @include: ./file.md -->` 语法进行文档嵌套。
-- **导航更新**：
-  - **现有分类**：直接在 `work/`, `exams/`, `thoughts/`, `interviews/` 目录下新增文件即可自动同步至侧边栏和列表，无需修改配置。
-  - **新增分类**：如需新增顶级分类目录，需在 `docs/.vitepress/config.ts` 的 `nav` 和 `sidebar` 中进行一次性挂载。
+- **内容编写**: 所有内容均使用 Markdown (.md) 编写。建议在文件开头使用 `# 标题` 定义文章名。
+- **组件注入**: 所有的全局 UI 特效组件（如樱花、看板）均通过 `docs/.vitepress/theme/index.ts` 的 `layout-bottom` 或插槽注入。
+- **图片路径**: 公共图片请存放在 `docs/public/`，在 CSS 或 Markdown 中使用 `/image-name.png` 引用。
